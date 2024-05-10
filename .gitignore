@@ -1,5 +1,6 @@
-*.h5
-*.json
-*.mp4
 .ipynb_checkpoints
 __pycache__
+faces/
+plates/
+.zip
+.pptx

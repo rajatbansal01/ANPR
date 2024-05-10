@@ -10,7 +10,7 @@ import requests
 # try:
 from PIL import Image
 
-from cv2 import cv2
+import cv2
 import numpy as np
 #import matplotlib.pyplot as plt
 # %matplotlib inline
@@ -18,22 +18,19 @@ from local_utils import detect_lp
 from os.path import splitext, basename
 from keras.models import model_from_json
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 face_classifier = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 
 # laod model from json file
 def load_model(path):
-    try:
-        path = splitext(path)[0]
-        with open('%s.json' % path, 'r') as json_file:
-            model_json = json_file.read()
-        model = model_from_json(model_json, custom_objects={})
-        model.load_weights('%s.h5' % path)
-        print("Loading model successfully...")
-        return model
-    except Exception as e:
-        print(e)
+    path = splitext(path)[0]
+    with open('%s.json' % path, 'r') as json_file:
+        model_json = json_file.read()
+    model = model_from_json(model_json, custom_objects={})
+    model.load_weights('%s.h5' % path)
+    print("Loading model successfully...")
+    return model
 
 # processing image.
 
